@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.references/
+*.tsbuildinfo
+*.log
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+/yita-*-preview.jpg
+
+# Earlier standalone prototype, retained locally for reference.
+/assets/
+/script.js
+/styles.css

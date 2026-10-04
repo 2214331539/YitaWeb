@@ -1,0 +1,65 @@
+:root {
+  // Font variables (base size: 16px)
+  --font-base: 0.8125rem;     // 13px
+  --font-xs: 0.5625rem;       // 9px
+  --font-sm: 0.6875rem;       // 11px
+  --font-regular: 0.75rem;    // 12px
+  --font-md: 1.0rem;          // 16px
+  --font-lg: 1.1875rem;       // 19px
+  --font-2xl: 1.3125rem;      // 21px
+  --font-3xl: 1.5625rem;      // 25px
+  --font-4xl: 2.5625rem;      // 41px
+  --font-body: 1.125rem;      // 18px
+
+  --font-tagline-ideal: 7.5vw; // 5rem-ish at vw=1280px
+  --font-tagline-max: 5rem;
+  --font-tagline-min: 2.75rem;
+  --font-tagline-clamp: clamp(var(--font-tagline-min), var(--font-tagline-ideal), var(--font-tagline-max));
+
+  --font-hero: 1.4rem;        // 22.4px
+  --font-cta: 5rem;
+  --font-h2: 2.75rem;
+  --font-h3: 2rem;
+  --font-h4: 1.25rem;
+
+}
+
+@media (max-width: @md) {
+  :root {
+    --font-cta: 2.75rem;
+    --font-h2: 2.5rem;
+    --font-h3: 2rem;
+    --font-h4: 1.25rem;
+  }
+}
+
+@media (max-width: @xs) {
+  :root {
+    --font-hero: 1.25rem;
+    --font-cta: 2.5rem;
+    --font-h2: 2.25rem;
+    --font-h3: 2rem;
+    --font-h4: 1.25rem;
+  }
+}
+
+.section-text :where(h2) {
+  font-size: var(--font-h2);
+  font-weight: 800;
+  margin-bottom: 0;
+  text-wrap: balance;
+}
+
+.section-text :where(h3) {
+  font-size: var(--font-h3);
+  font-weight: 600;
+  margin-bottom: 0;
+  text-wrap: balance;
+}
+
+.section-text :where(h4) {
+  font-size: var(--font-h4);
+  font-weight: 300;
+  margin: 0 0 1em;
+  text-wrap: balance;
+}

@@ -1,0 +1,607 @@
+// page template
+body {
+  --separator-height: 72px;
+}
+
+.header-separator {
+  // Anchor it to the bottom
+  position: absolute;
+  bottom: 0;
+  // Fix 1 pixel gap on resize
+  margin-top: -1px;
+  // We probably don't need background-color, but to be safe
+  color: var(--page-header-bg);
+  background-color: var(--bg);
+  // Give it some space
+  width: 100%;
+  min-height: var(--separator-height);
+  // Prevent any gaps on the top
+  line-height: 0;
+}
+
+.pre-footer-cover-container {
+  position: relative;
+  margin-bottom: -1px;
+
+  .page-separator-cover {
+    color: black;
+  }
+}
+
+.page-separator-cover {
+  position: absolute;
+  pointer-events: none;
+  bottom: 0;
+  width: 100%;
+  line-height: 0;
+  color: var(--bg);
+
+  :first-child {
+    position: absolute;
+    top: 0;
+  }
+}
+
+.page-separator {
+  width: 100%;
+}
+
+#masthead {
+  --min-height-ideal: 18vh;
+  --min-height-min: 12.5rem;
+  --min-height-max: 14.25rem;
+  --min-height-clamp: clamp(var(--min-height-min), var(--min-height-ideal), var(--min-height-max));
+}
+
+#masthead,
+header {
+  display: flex;
+  flex-direction: column;
+  min-height: var(--min-height-clamp);
+  //min-height: 12.5rem; // 200px
+  background-color: var(--page-header-bg);
+  color: var(--txt);
+  padding-top: calc(var(--nav-height) * 2);
+  isolation: isolate;
+  // Counter the top separator
+  padding-bottom: var(--separator-height);
+
+  .breadcrumbs {
+    font-size: 0.75rem;
+    font-weight: 200;
+  }
+
+  .tagline {
+    margin-top: 1rem;
+    font-size: var(--font-tagline-clamp);
+  }
+
+}
+
+.logo {
+  max-height: 100%;
+  min-width: 250px;
+  max-width: 250px;
+  height: 60px;
+  width: auto;
+  transition: color .2s;
+}
+
+.logo:hover,
+.mozilla-logo:hover {
+  color: var(--accent);
+  transform: none;
+}
+
+#main-content {
+  margin-bottom: 5.3125rem;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding-inline: 1rem;
+  padding-block: clamp(1rem, 5.469vw, 4.375rem); // 4.375rem~
+  margin-inline: auto;
+  max-width: 1280px;
+  overflow: hidden;
+
+  // For the product pages
+  &.container-tight {
+    max-width: 1040px;
+  }
+
+  &.no-gap {
+    gap: 0;
+  }
+
+  @media (max-width: @md) {
+    // Give them some space to breath
+    width: calc(100% - 1rem);
+    box-sizing: border-box;
+  }
+}
+
+.section-text {
+  max-inline-size: 55%;
+  margin-inline: auto;
+  margin-bottom: 2em;
+  font-weight: 400;
+  font-size: var(--font-md);
+
+  &.tight {
+    max-inline-size: 42%;
+  }
+
+  &.wide {
+    max-inline-size: 70%;
+  }
+
+  @media (max-width: @md) {
+    max-inline-size: 90%;
+    margin-inline: unset;
+    padding-inline: 1rem;
+
+    &.tight,
+    &.wide {
+      max-inline-size: 90%;
+    }
+
+  }
+}
+
+.styled-list {
+  list-style: none;
+  margin-left: 0;
+  margin-bottom: 1.5rem;
+  text-indent: -1rem;
+  line-height: 30px;
+
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  li:before {
+    content: '●';
+    color: var(--accent);
+    margin-right: 0.75rem;
+  }
+
+  @media (max-width: @md) {
+    text-indent: -2.5rem;
+    li:before {
+      margin-right: 1rem;
+    }
+  }
+}
+
+.site-links {
+  font-size: var(--font-md);
+  display: grid;
+  gap: 30px;
+  width: 100%;
+  grid-template:
+                "a c d e" 30px
+                "b c d e";
+
+  .site-link-section {
+    display: flex;
+    flex-direction: column;
+    height: 180px;
+
+    h4 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      padding-left: 40px;
+    }
+
+    .home {
+      font-weight: 600;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    // Help our grid template pick the correct b...
+    &:nth-child(2) {
+      grid-area: b;
+    }
+  }
+
+  @media (max-width: @md) {
+    display: flex;
+    flex-direction: column;
+
+    .site-link-section {
+      height: auto;
+    }
+  }
+}
+
+
+// This is actually just the rest of the 115-homepage.css waiting to be cannibalized!
+
+html {
+  font-family: 'Inter', sans-serif;
+}
+
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: 'Inter var', sans-serif;
+  }
+}
+
+picture,
+img {
+  max-width: 100%;
+}
+
+body {
+  font-size: var(--font-body);
+  line-height: 1.5;
+  font-weight: 300;
+  background: var(--bg);
+  color: var(--txt);
+  position: relative;
+  scroll-padding-top: var(--nav-height);
+  min-height: 100vh;
+}
+
+.hidden {
+  display: none;
+}
+
+h1, h2 {
+  font-family: 'Metropolis', sans-serif;
+  font-weight: 600;
+}
+
+.os-list {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.icon {
+  height: 32px;
+  width: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-apple {
+  position: relative;
+  top: -2px;
+}
+
+.icon .icon-linux-fg {
+  fill: transparent !important;
+}
+
+.icon-tux-alt .icon-linux-fg {
+  fill: var(--color-gray-20) !important;
+}
+
+.icon-tux-alt .icon-linux-bg {
+  fill: transparent !important;
+}
+
+svg {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.nav-ln,
+.cta-ln,
+.footer-ln {
+  font-size: 1.25rem;
+  line-height: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  position: relative;
+  transition: font-size .2s;
+}
+
+.nav-ln::after,
+.cta-ln::after,
+.footer-ln::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  bottom: -0.3em;
+  height: 2px;
+  background-color: var(--color-blue-60);
+  background-image: linear-gradient(to right, var(--color-blue-50), var(--color-purple-50));
+}
+
+.nav-ln:hover,
+.footer-ln:hover {
+  line-height: 1rem;
+}
+
+.cta-ln:hover {
+  font-size: 1.3rem;
+  line-height: 1rem;
+}
+
+.nav-ln::after,
+.footer-ln::after {
+  width: 0;
+  transition: width .3s;
+}
+
+.nav-ln:focus::after,
+.nav-ln:hover::after,
+.footer-ln:hover::after {
+  width: 100%;
+}
+
+.nav-btn::before {
+  display: none;
+}
+
+header,
+section {
+  position: relative;
+  text-align: center;
+  scroll-padding: var(--nav-size);
+}
+
+.tagline {
+  justify-content: center;
+  font-size: 6rem;
+  line-height: 1;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-wrap: balance;
+}
+
+.hero-text {
+  font-size: var(--font-hero);
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.4;
+
+  .sub-tag {
+    font-weight: 300;
+    max-inline-size: 40rem;
+    margin: auto;
+
+    strong {
+      font-weight: 500;
+    }
+  }
+}
+
+.txt-gradient {
+  background-color: var(--accent);
+  background-image: linear-gradient(to right, var(--color-blue-50), var(--color-purple-50));
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  // Playing with some colour
+  &.beta {
+    background: none;
+    color: var(--txt);
+    //background-image: linear-gradient(135deg, #E74EB9 0%, #882395 100%);
+  }
+
+  &.daily {
+    background: none;
+    color: var(--txt);
+    //background-image: linear-gradient(135deg, #EB002D 0%, #890019 100%)
+  }
+}
+
+.sub-tag {
+  margin-top: 0;
+}
+
+.hero-download {
+  display: grid;
+  place-items: center;
+  gap: 12px;
+  margin-top: 1rem;
+}
+
+.mask {
+  color: var(--bg);
+  filter: drop-shadow(0 -2px 0 var(--separator-color));
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 75px;
+}
+
+.mask > svg {
+  position: absolute;
+  inset-inline: 0;
+  max-height: none;
+  max-width: none;
+  bottom: -1px;
+}
+
+.graphic {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+}
+
+.carousel {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.carousel > picture {
+  position: absolute;
+  inset: 0;
+  opacity: 1;
+  z-index: 3;
+  width: 70%;
+  left: 15%;
+  top: 10%;
+}
+
+.carousel > picture:last-child {
+  opacity: 0;
+  animation-duration: 30s;
+  animation-name: fade-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.carousel > picture > img, .carousel > picture > source {
+  border-radius: 4px;
+}
+
+.devices-container {
+  position: relative;
+  display: flex;
+
+  .TfA-overlay {
+    width: 20%;
+    position: absolute;
+    top: 13%;
+    right: 3%;
+    filter: drop-shadow(0 1px 6px var(--color-gray-40));
+  }
+}
+
+.fill-current {
+  display: none;
+}
+
+.small-link {
+  font-weight: 400;
+  font-size: 80%;
+}
+
+.wrap-balance {
+  text-wrap: balance;
+}
+
+.split-text {
+  text-align: center;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+
+
+  h2, h4 {
+    margin: 0;
+  }
+
+  h2 {
+    font-size: var(--font-h2);
+  }
+
+  h4 {
+    font-size: var(--font-h4);
+    font-weight: 400;
+  }
+}
+
+.two-columns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  margin-bottom: 5rem;
+
+  &.flip-columns {
+    flex-direction: row-reverse;
+    @media (max-width: @lg) {
+      flex-direction: column-reverse;
+    }
+  }
+
+
+  div:first-child {
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (max-width: @lg) {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  div:nth-child(2) {
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (max-width: @lg) {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  .section-text {
+    text-align: left;
+    max-width: 500px;
+  }
+
+  @media (max-width: @lg) {
+    flex-direction: column-reverse;
+  }
+
+}
+
+.three-columns {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  width: 100%;
+  font-weight: 400;
+
+
+  @media (max-width: @sm) {
+    gap: 1rem;
+  }
+
+  .styled-list {
+    text-indent: -2.5rem;
+  }
+}
+
+.cover-container {
+  overflow: hidden;
+  position: relative;
+
+  img {
+    margin-bottom: -0.25rem;
+    @media (max-width: @md) {
+      overflow: hidden;
+      max-width: 200%;
+      translate: -25%;
+    }
+  }
+}
+
+// We can toggle playback on autoplay videos
+video[autoplay] {
+  cursor: pointer;
+}

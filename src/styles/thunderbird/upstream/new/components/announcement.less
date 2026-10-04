@@ -1,0 +1,43 @@
+:root {
+  /* Adjust these as needed by the text amount */
+  --site-announcement-height: 2.625rem; // 42px;
+  --site-announcement-padding: 0rem;
+
+  @media (max-width: @sm) {
+    --site-announcement-height: 4.25rem; // 68px;
+    --site-announcement-padding: 0;
+  }
+
+}
+
+.site-announcement {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: var(--site-announcement-padding);
+  text-align: center;
+
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: var(--site-announcement-height);
+  z-index: 99;
+
+  background-color: var(--color-ink-90);
+  color: var(--color-white);
+  font-size: 80%;
+  font-weight: 500;
+}
+
+.site-announcement > .strong::after {
+  top: 0.22rem;
+}
+
+.site-announcement ~ .site-nav {
+  top: var(--site-announcement-height);
+}
+
+.site-announcement ~ .scrolled-nav {
+  top: 0;
+}

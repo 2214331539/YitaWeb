@@ -1,0 +1,22 @@
+/* Scoped Preflight defaults precede the imported utilities, as in TweakCN. */
+:where(.tweak-home) {
+  font-family: var(--ch-font-sans);
+  line-height: 1.5;
+}
+:where(
+  .tweak-home,
+  .tweak-home *,
+  .tweak-home *::before,
+  .tweak-home *::after
+) {
+  border-style: solid;
+  border-width: 0;
+  border-color: var(--ch-color-border);
+}
+:where(.tweak-home) :where(h1, h2, h3, p, ol, ul, figure) {
+  margin: 0;
+  padding: 0;
+}
+:where(.tweak-home) :where(ol, ul) {
+  list-style: none;
+}
