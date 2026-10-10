@@ -207,14 +207,20 @@ function Navigation({ onDownload }: { onDownload: () => void }) {
         {
           label: "Windows 入门",
           detail: "安装、配置与第一次翻译",
-          href: product.windowsGuide,
+          href: "./windows.html",
           icon: <BookOpen />,
         },
         {
           label: "Mac 预览指南",
           detail: "Apple Silicon 预览版说明",
-          href: product.macGuide,
+          href: "./mac.html",
           icon: <BookOpen />,
+        },
+        {
+          label: "免费使用与常见问题",
+          detail: "模型费用、文本支持与隐私说明",
+          href: "./faq.html",
+          icon: <MessageCircle />,
         },
       ],
     },
@@ -719,12 +725,13 @@ export default function ThunderbirdLanding() {
         <section className="hero-content" aria-label="认识 Yita">
           <div className="container hero">
             <div className="hero-text">
+              <p className="hero-brand-label">Yita · 免费开源桌面翻译工具</p>
               <h1 className="tagline">
                 让翻译，<span className="txt-gradient">再轻一点。</span>
               </h1>
               <p className="sub-tag">
-                认识 Yita，你的<strong>轻巧桌面翻译伙伴</strong>。<br />
-                选中文字，就在原文旁边读到译文。
+                认识 Yita，你的<strong>轻巧桌面翻译伙伴</strong>。<br />在
+                Windows 与 Mac 上，选中文字，就在原文旁边读到译文。
               </p>
             </div>
             <HeroDownload onDownload={showDownloads} />
@@ -823,7 +830,7 @@ export default function ThunderbirdLanding() {
                 读论文、看文档，或浏览外语网页。对可选取的文本，Yita
                 把原文、译文和追问放在一起，让理解自然接续。
               </p>
-              <a className="strong" href={product.guide}>
+              <a className="strong" href="#reading-guides">
                 查看使用指南
               </a>
             </div>
@@ -895,6 +902,30 @@ export default function ThunderbirdLanding() {
           </div>
           <Mask />
         </section>
+        <section id="reading-guides" className="reading-guides">
+          <div className="container">
+            <h2>从你的桌面，开始使用 Yita。</h2>
+            <p>
+              免费开源的划词翻译工具，支持 Windows 10 / 11 x64 与 Apple Silicon
+              Mac 预览版。 软件免费下载，翻译需配置自己的模型 API
+              Key，模型服务可能另行计费。
+            </p>
+            <nav
+              className="reading-guide-links"
+              aria-label="平台指南与常见问题"
+            >
+              <a href="./windows.html">
+                Windows 翻译工具使用指南 <ArrowRight size={17} />
+              </a>
+              <a href="./mac.html">
+                Mac 翻译工具使用指南 <ArrowRight size={17} />
+              </a>
+              <a href="./faq.html">
+                免费使用与常见问题 <ArrowRight size={17} />
+              </a>
+            </nav>
+          </div>
+        </section>
       </main>
       <section id="whats-next">
         <div className="container">
@@ -946,8 +977,9 @@ export default function ThunderbirdLanding() {
               </div>
               <div>
                 <h3>使用帮助</h3>
-                <a href={product.windowsGuide}>Windows 指南</a>
-                <a href={product.macGuide}>Mac 预览指南</a>
+                <a href="./windows.html">Windows 指南</a>
+                <a href="./mac.html">Mac 预览指南</a>
+                <a href="./faq.html">免费使用与常见问题</a>
                 <a href={product.issues}>问题反馈</a>
               </div>
               <div>

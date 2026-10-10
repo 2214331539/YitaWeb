@@ -29,19 +29,29 @@ The official URL is https://2214331539.github.io/YitaWeb/. GitHub Pages serves t
 
 In repository Settings → Pages, the publishing source is GitHub Actions. The workflow in .github/workflows/deploy.yml builds and validates pushes to main, then deploys dist/. It can also be run manually from Actions.
 
-The build renders the React page to HTML before publication; React hydrates the same content in the browser to enable navigation, dialogs and scroll effects. Crawlers and visitors without JavaScript can read the product description and follow the main download link.
+The build renders four pages to HTML before publication. React hydrates the homepage to enable navigation, dialogs and scroll effects. The Windows guide (windows.html), Mac guide (mac.html) and free-use FAQ (faq.html) are complete static documents with native expandable answers and no hydration JavaScript. Crawlers and visitors without JavaScript can read all content and follow downloads and internal links. The guides are also available through the Vite development server.
 
-The published site includes a canonical URL, search title and description, Open Graph metadata, WebSite and SoftwareApplication structured data, and sitemap.xml. site.config.json contains the canonical site URL and the public IndexNow ownership key. The workflow notifies IndexNow after deployment; HTTP 200 or 202 means the URL was received, not that it has been indexed. Run npm run seo:submit to retry after an unsuccessful notification.
+Every page has a distinct canonical URL, search title, description and Open Graph metadata. Structured data describes the application, pages and guide breadcrumbs. SoftwareApplication identifies the software as free while disclosing possible third-party model API costs, matching the visible content. sitemap.xml lists all four pages. site.config.json contains the canonical site URL and the public IndexNow ownership key. The workflow reads the deployed sitemap and notifies IndexNow about every listed URL after deployment; HTTP 200 or 202 means the URLs were received, not that they have been indexed. Run npm run seo:submit to retry after an unsuccessful notification.
 
-GitHub project sites cannot control the domain-root /robots.txt from a project subdirectory. Crawling is allowed by default unless the domain-root policy says otherwise; the page declares index/follow and no ineffective /YitaWeb/robots.txt is used. The sitemap is available at https://2214331539.github.io/YitaWeb/sitemap.xml.
+GitHub project sites cannot control the domain-root /robots.txt from a project subdirectory. The sitemap declaration for this site is maintained separately in robots.txt in 2214331539/2214331539.github.io (master). It points crawlers to https://2214331539.github.io/YitaWeb/sitemap.xml without changing permissions for the personal homepage. No ineffective /YitaWeb/robots.txt is used.
 
 Google Search Console, Bing Webmaster Tools and Baidu Search Resource Platform require their own account/site verification. IndexNow does not submit to Google. Search-engine inclusion and ranking are controlled by each engine and are not guaranteed. When adding a custom domain later, update site.config.json, the canonical and Open Graph URLs in index.html, and this README before publishing.
+
+Free owner verification and manual submissions:
+
+- Google: open https://search.google.com/search-console and add the URL-prefix property https://2214331539.github.io/YitaWeb/. Choose HTML-file verification; place the exact supplied file in public/, build and deploy, then verify. Submit sitemap.xml under Sitemaps, and inspect the homepage URL to request indexing. DNS verification is not needed for a URL-prefix property.
+- Bing: open https://www.bing.com/webmasters/, add the site and verify using the supplied file or import an already verified Google property. Submit the sitemap there to inspect crawl/indexing status. The automatic IndexNow notification works separately from this dashboard.
+- Baidu: open https://ziyuan.baidu.com/, add and verify the site using the file or HTML tag supplied by the platform, then use the ordinary URL-submission method available to that verified property. Baidu may require verification at the host root; in that case publish its exact verification file in the personal Pages repository. Account eligibility and available submission methods are controlled by Baidu; IndexNow does not replace this step.
+
+Never put account passwords, cookies or submission API tokens in this public repository. HTML ownership-verification files and the IndexNow key are intentionally public proofs. Do not use paid submission services or promise a ranking. The project's official app README links to the homepage and platform guides so users and crawlers can find the canonical site.
 
 ## Active source
 
 - src/main.tsx: React hydration entry and the two active stylesheet imports.
 - src/entry-server.tsx and scripts/prerender.mjs: build-time HTML rendering and search metadata.
 - src/pages/ThunderbirdLanding.tsx: source-derived section structure and Yita content; navigation, platform chooser, screenshot tabs and native image dialog.
+- src/pages/guides/content.ts and GuidePage.tsx: version-aligned platform and FAQ content, rendered as independent static pages with unique metadata.
+- src/styles/yita-guides.css: shared brand treatment for the guide pages and homepage guide links.
 - src/styles/thunderbird/base.less: selected original Thunderbird source modules.
 - src/styles/thunderbird/upstream/: original LESS files, with two documented asset-path substitutions.
 - src/styles/yita-thunderbird.css: brand palette, screenshot composition, responsive behavior and motion.
