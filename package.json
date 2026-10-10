@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && node scripts/package-source.mjs && vite build && node scripts/prerender.mjs && node scripts/check-site.mjs",
     "preview": "vite preview --host 127.0.0.1 --port 4173",
     "typecheck": "tsc -b",
-    "format": "prettier --write src index.html vite.config.ts",
-    "format:check": "prettier --check src index.html vite.config.ts"
+    "format": "prettier --write src scripts index.html vite.config.ts site.config.json .github/workflows",
+    "format:check": "prettier --check src scripts index.html vite.config.ts site.config.json .github/workflows",
+    "seo:submit": "node scripts/submit-indexnow.mjs"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.20",
@@ -32,6 +33,7 @@
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "@vitejs/plugin-react": "^5.0.0",
+    "fflate": "^0.8.3",
     "less": "^4.9.1",
     "prettier": "^3.9.9",
     "typescript": "~5.9.2",

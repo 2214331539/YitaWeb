@@ -348,12 +348,12 @@ function Navigation({ onDownload }: { onDownload: () => void }) {
 }
 
 function HeroDownload({ onDownload }: { onDownload: () => void }) {
-  const [platform] = useState<"windows" | "mac" | null>(() => {
+  const [platform, setPlatform] = useState<"windows" | "mac" | null>(null);
+  useEffect(() => {
     const agent = navigator.userAgent;
-    if (/Windows NT/i.test(agent)) return "windows";
-    if (/Macintosh/i.test(agent)) return "mac";
-    return null;
-  });
+    if (/Windows NT/i.test(agent)) setPlatform("windows");
+    else if (/Macintosh/i.test(agent)) setPlatform("mac");
+  }, []);
   return (
     <div className="hero-download">
       <PlatformList />
@@ -369,12 +369,16 @@ function HeroDownload({ onDownload }: { onDownload: () => void }) {
           {platform === "windows" ? "Windows 版" : "Mac 版 · Apple Silicon"}
         </a>
       ) : (
-        <button
+        <a
           className="btn btn-gradient download-primary"
-          onClick={onDownload}
+          href={product.release}
+          onClick={(event) => {
+            event.preventDefault();
+            onDownload();
+          }}
         >
           <Download size={19} /> 下载 Yita
-        </button>
+        </a>
       )}
       <p className="download-note">
         免费开源 <span>·</span> <a href={product.release}>v{product.version}</a>
