@@ -45,6 +45,8 @@ Free owner verification and manual submissions:
 
 Never put account passwords, cookies or submission API tokens in this public repository. HTML ownership-verification files and the IndexNow key are intentionally public proofs. Do not use paid submission services or promise a ranking. The project's official app README links to the homepage and platform guides so users and crawlers can find the canonical site.
 
+The owner's Google verification tag is included in index.html and preserved in every prerendered page. Bing's supplied XML proof is published as public/BingSiteAuth.xml, and mirrored at the domain root in the personal Pages repository for verification flows that check the host root. Keep these public proofs in place after verification. Publishing proofs does not itself complete verification inside the webmaster accounts.
+
 ## Active source
 
 - src/main.tsx: React hydration entry and the two active stylesheet imports.
